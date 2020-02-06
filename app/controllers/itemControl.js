@@ -7,7 +7,7 @@ const createItem =  (req, res) => {
         return res.status(422).json({ errors: errors.array() });
     }
     let item = new Item();
-    item.setId(1);
+    item.setId(req.body.id);
     item.setName(req.body.name);
     item.setAmount(req.body.amount);
     item.setPrice(req.body.price);
