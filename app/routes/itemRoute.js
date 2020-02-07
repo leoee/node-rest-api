@@ -10,6 +10,11 @@ module.exports = app => {
       ], itemControl.createItem);
     app.get('/item', itemControl.getItem);
     app.get('/item/:id', itemControl.getItem);
-    app.put('/item/:id', itemControl.updateItem);
+    app.put('/item/:id', [
+      check('id').exists(),
+      check('name').exists(),
+      check('amount').exists(),
+      check('price').exists()
+    ], itemControl.updateItem);
     app.delete('/item/:id', itemControl.deleteItem);
 }
