@@ -8,3 +8,5 @@ before_script:
   - node index.js &
 script:
   - 'mocha'
+after_success:
+  - npm run coverage
