@@ -28,12 +28,11 @@ describe("Test POST method", function () {
 
 describe("Test GET method without params id", function () {
     it("Response must be 201", function (done) {
-        const value = 1;
         chai
             .request(urlBase)
             .get('/item')
             .end(function (err, res) {
-                expect(res.statusCode).to.equal(200);
+                expect(res.statusCode).to.be.equal(200);
                 done();
             });
     })
