@@ -1,18 +1,17 @@
-const Item = require('../models/itemModel.js');
+const itemDAO = require('../models/itemDAO');
 const { validationResult } = require('express-validator');
 
-const createItem =  (req, res) => {
+const createItem =  async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.array() });
     }
-    let item = new Item();
-    item.setId(req.body.id);
-    item.setName(req.body.name);
-    item.setAmount(req.body.amount);
-    item.setPrice(req.body.price);
-
-    res.status(201).json({message: 'Item ' + item.getId() + ' was created!'});
+    try {
+        await itemDAO.createDevice(req.body);
+        res.status(201).json({ success: true, message: 'Item ' + req.body.id + ' was created!' });
+    } catch (error) {
+        res.status(400).json({ success: false, message: error });
+    }
 }
 
 const deleteItem =  (req, res) => {
@@ -37,12 +36,6 @@ const updateItem = (req, res) => {
     if (!errors.isEmpty() || !id) {
         return res.status(422).json({ errors: errors.array() });
     }
-    let item = new Item();
-    item.setId(req.body.id);
-    item.setName(req.body.name);
-    item.setAmount(req.body.amount);
-    item.setPrice(req.body.price);
-
     res.status(200).json({message: 'Item XXXX was updated!'});
 }
 

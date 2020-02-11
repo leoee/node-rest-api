@@ -10,6 +10,7 @@ app.use(cors());
 
 consign()
     .include('app/routes')
+    .then('config/dbConnection.js')
     .into(app);
 
 module.exports = app;
