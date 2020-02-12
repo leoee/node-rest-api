@@ -9,7 +9,7 @@ module.exports = app => {
         check('price').exists()
       ], itemControl.createItem);
     app.get('/item', itemControl.getItem);
-    app.get('/item/:id', itemControl.getItem);
+    app.get('/item/:id', itemControl.getItemById);
     app.put('/item/:id', [
       check('id').exists(),
       check('name').exists(),

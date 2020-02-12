@@ -23,10 +23,23 @@ const deleteItem =  (req, res) => {
     }
 }
 
-const getItem =  (req, res) => {
+const getItem =  async (req, res) => {
+    try {
+        const item = await itemDAO.listAllItems();
+        res.status(200).json({ success: true, item: item });
+    } catch (error) {
+        res.status(400).json({ success: false, message: error });
+    }
+}
+
+const getItemById =  async (req, res) => {
     const id = req.params.id;
-    const item = req.body;
-    res.status(200).json({message: 'Item XXXX was created!'});
+    try {
+        const items = await itemDAO.getItem(id);
+        res.status(200).json({ success: true, items: items });
+    } catch (error) {
+        res.status(400).json({ success: false, message: error });
+    }
 }
 
 const updateItem = (req, res) => {
@@ -43,5 +56,6 @@ module.exports = {
     createItem,
     deleteItem,
     getItem,
-    updateItem
+    updateItem,
+    getItemById
 }
