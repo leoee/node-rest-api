@@ -1,6 +1,5 @@
 const ItemSchema = require('../schemas/itemSchema');
-const createDevice = item => {
-    console.log(item);
+const createItem = item => {
     return new Promise((resolve, reject) => {
         new ItemSchema(item).save()
             .then(() => resolve())
@@ -28,7 +27,7 @@ const getItem = id => {
 }
 
 module.exports = {
-    createDevice,
+    createItem,
     listAllItems,
     getItem
 }

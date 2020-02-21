@@ -7,7 +7,7 @@ const createItem =  async (req, res) => {
         return res.status(422).json({ errors: errors.array() });
     }
     try {
-        await itemDAO.createDevice(req.body);
+        await itemDAO.createItem(req.body);
         res.status(201).json({ success: true, message: 'Item ' + req.body.id + ' was created!' });
     } catch (error) {
         res.status(400).json({ success: false, message: error });

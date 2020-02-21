@@ -23,7 +23,7 @@ const ItemSchema = new Schema({
     }
 });
 
-ItemSchema.plugin(uniqueValidator, { message: "Two devices cannot have the same field '{PATH}'" });
+ItemSchema.plugin(uniqueValidator, { message: "Two items cannot have the same field '{PATH}'" });
 
 const Item = mongoose.model('Item', ItemSchema);
 
